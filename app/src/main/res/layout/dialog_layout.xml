@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/materialEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:met_baseColor="#000000"
+        app:met_floatingLabel="none"
+        app:met_primaryColor="@color/Orange"
+        android:singleLine="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        app:met_errorColor="@color/red"/>
+</LinearLayout>

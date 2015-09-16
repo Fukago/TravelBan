@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/datatext"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:textColor="#000000"
+        android:gravity="center"
+        tool:text="G139"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_jiantou"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

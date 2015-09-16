@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/cardMarginVertical"
+        android:layout_marginLeft="@dimen/cardMarginHorizontal"
+        android:layout_marginRight="@dimen/cardMarginHorizontal"
+        android:layout_marginTop="@dimen/cardMarginVertical"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="false"
+        app:contentPadding="0dp">
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            app:mrl_rippleColor="@color/Gray"
+            app:mrl_rippleDuration="500">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/info"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/trainNo"
+                            style="@style/TextAppearance.AppCompat.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:gravity="center_vertical"
+                            android:textSize="25dp"
+                            tool:text="G139" />
+
+                        <TextView
+                            android:id="@+id/trainType"
+                            style="@style/TextAppearance.AppCompat.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tool:text="(高速动车)" />
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/info"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/from"
+                        style="@style/TextAppearance.AppCompat.Subhead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        tool:text="北京南" />
+
+                    <TextView
+                        android:id="@+id/to"
+                        style="@style/TextAppearance.AppCompat.Subhead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:layout_below="@+id/info"
+                        tool:text="->上海虹桥" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/place"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/startTime"
+                        style="@style/TextAppearance.AppCompat.Subhead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        tool:text="时间：14:10" />
+
+                    <TextView
+                        android:id="@+id/endTime"
+                        style="@style/TextAppearance.AppCompat.Subhead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/info"
+                        android:textColor="#000000"
+                        tool:text="－19:51" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/duration"
+                    style="@style/TextAppearance.AppCompat.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/time"
+                    android:layout_marginTop="8dp"
+                    tool:text="路途时间：5小时41分" />
+
+            </RelativeLayout>
+
+        </com.balysv.materialripple.MaterialRippleLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>

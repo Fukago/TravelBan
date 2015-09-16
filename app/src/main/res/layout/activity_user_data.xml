@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Orange"
+        android:minHeight="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:id="@+id/datascroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/datalist"
+                android:layout_width="match_parent"
+                android:layout_height="292dp"
+                android:layout_margin="10dp"
+                android:background="#ffffff">
+
+            </ListView>
+
+            <LinearLayout
+                android:id="@+id/messageLayout"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:background="#ffffff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="96dp"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:text="个人说明"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="10dp"
+                    tool:text="个人说明"/>
+
+                <TextView
+                    android:id="@+id/datamessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:lines="2"
+                    android:textColor="#000000"
+                    tool:text="dsdsdsdsd"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

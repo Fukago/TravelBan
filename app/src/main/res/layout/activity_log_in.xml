@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Orange"
+        android:minHeight="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:src="@drawable/login_picture"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入您要注册的账号"
+            app:met_baseColor="#000000"
+            app:met_minCharacters="6"
+            app:met_maxCharacters="12"
+            app:met_errorColor="@color/red"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="账号"
+            android:singleLine="true"
+            app:met_primaryColor="@color/Orange" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入您要注册密码"
+            android:password="true"
+            app:met_baseColor="#000000"
+            app:met_minCharacters="6"
+            app:met_maxCharacters="12"
+            app:met_errorColor="@color/red"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="密码"
+            android:singleLine="true"
+            app:met_primaryColor="@color/Orange" />
+
+        <CheckBox
+            android:id="@+id/show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="显示密码" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Orange"
+            android:text="登录"
+            android:textColor="@color/White" />
+
+        <Button
+            android:id="@+id/regisiter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/Orange"
+            android:text="注册"
+            android:textColor="@color/White" />
+    </LinearLayout>
+</LinearLayout>

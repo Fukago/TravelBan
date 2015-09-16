@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/cardMarginVertical"
+        android:layout_marginLeft="@dimen/cardMarginHorizontal"
+        android:layout_marginRight="@dimen/cardMarginHorizontal"
+        android:layout_marginTop="@dimen/cardMarginVertical"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="false"
+        app:contentPadding="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/startime_image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_starttime" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/startime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入出发时间"
+                    app:met_baseColor="#000000"
+                    app:met_floatingLabel="normal"
+                    android:singleLine="true"
+                    app:met_floatingLabelText="出发时间"
+                    app:met_helperText="格式：2015-09-01"
+                    app:met_primaryColor="#0056d3" />
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/from_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_from" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入出发地"
+                    app:met_baseColor="#000000"
+                    android:singleLine="true"
+                    app:met_floatingLabel="normal"
+                    app:met_floatingLabelText="出发地"
+                    app:met_primaryColor="#0056d3" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/to_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_to" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/to"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入目的地"
+                    android:singleLine="true"
+                    app:met_baseColor="#000000"
+                    app:met_floatingLabel="normal"
+                    app:met_floatingLabelText="目的地"
+                    app:met_primaryColor="#0056d3" />
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/item_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0056d3"
+                android:text="查询"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

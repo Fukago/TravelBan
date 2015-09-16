@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Orange"
+        android:minHeight="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/tittle"
+            app:met_baseColor="#000000"
+            app:met_floatingLabel="none"
+            app:met_primaryColor="@color/Orange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/description"
+            app:met_baseColor="#000000"
+            android:layout_marginTop="5dp"
+            app:met_floatingLabel="none"
+            app:met_primaryColor="@color/Orange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/edit"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:textColor="#000000"
+            android:gravity="start"/>
+
+        <!--<EditText-->
+            <!--style="@style/my_edittext_style"-->
+            <!--android:text="My EditText"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content">-->
+        <!--</EditText>-->
+        <Button
+            android:id="@+id/put"
+            android:layout_marginTop="5dp"
+            android:background="@color/Orange"
+            android:text="提交"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+    </LinearLayout>
+</LinearLayout>

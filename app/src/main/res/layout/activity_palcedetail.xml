@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <include layout="@layout/view_progress" />
+
+    <include layout="@layout/view_empty" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/name"
+                            style="@style/TextAppearance.AppCompat.Body2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textSize="24dp"
+                            tool:text="颐和园" />
+
+                        <ImageView
+                            android:id="@+id/share"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_margin="5dp"
+                            android:layout_toLeftOf="@+id/collect"
+                            android:clickable="true"
+                            android:src="@drawable/ic_fenxiang" />
+
+                        <ImageView
+                            android:id="@+id/collect"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_margin="5dp"
+                            android:clickable="true"
+                            android:src="@drawable/ic_weishoucang" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ic_phone"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_phone" />
+
+                        <TextView
+                            android:id="@+id/phone"
+                            style="@style/TextAppearance.AppCompat.Body2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            tool:text="010-62881144" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ic_url"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_url" />
+
+                        <TextView
+                            android:id="@+id/url"
+                            style="@style/TextAppearance.AppCompat.Body2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoLink="web"
+                            android:clickable="true"
+                            tool:text="http://lvyou.baidu.com/yiheyuan" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/Description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="8"
+                        tool:text="简介\n   颐和园位于北京西北郊海淀区内，距北京城区15公里，是我国现存规模最大，保存最完整的皇家园林之一，也是享誉世界的旅游胜地之一。 颐和园是利用昆明湖、万寿山为基址，以杭州西湖风景为蓝本，汲取江南园林的某些设计手法和意境而建成的一座大型天然山水园，也是保存得最完整的一座皇家行宫御苑，被誉为皇家园林博物馆。 颐和园景区规模宏大，园内建筑以佛香阁为中心，园中有景点建筑物百余座、大小院落20余处，3555古建筑，面积70000多平方米，共有亭、台、楼、阁、廊、榭等不同形式的建筑3000多间。古树名木1600余株。其中佛香阁、长廊、石舫、苏州街、十七孔桥、谐趣园、大戏台等都已成为家喻户晓的代表性建筑。" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/ic_anli"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_anli" />
+
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ic_anli"
+                        android:padding="16dp"
+                        android:textColor="#000000"
+
+                        tool:text="1. 旺季（4月1日~10月31日）：30.00元 德和园：5.00元 佛香阁：10.00元 苏州街：10.00元 文昌院：20.00元 联票（含门票、文昌院、德和园、佛香阁、苏州街澹宁堂）：60.00元 2. 淡季（11月1日~3月31日）：20.00元 德和园：5.00元 佛香阁：10.00元 苏州街：10.00元 文昌院：20.00元 联票（含门票、文昌院、德和园、佛香阁、苏州街澹宁堂）：50.00元" />
+
+                    <TextView
+                        android:id="@+id/open"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/price"
+                        android:padding="16dp"
+                        android:textColor="#000000"
+
+                        tool:text="1. 旺季（4月1日~10月31" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/AtName"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+
+                        tool:text="【门票优惠政策】" />
+
+                    <TextView
+                        android:id="@+id/AtDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoLink="web"
+                        android:textColor="#000000"
+
+                        tool:text="1. 身高1.2米以下儿童免票。 2. 北京市65岁以上老年人凭老年证免票；外地70周岁以上（含70周岁）老年人凭有效证件，门票半价优惠。 3. 大、中、小学学生（不含成人教育学生）、外国留学生凭学生证，门票半价优惠。 4. 残疾人、离休干部、离休军人、现役军人、武警官兵、省、部级以上劳模凭有效证件免票。 5. 持有社会保障金领取证的人员凭有效证件，门票半价优惠。" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
