@@ -22,5 +22,4 @@ public class TopicAdapter extends RecyclerArrayAdapter<Topic> {
         return new TopicViewHolder(viewGroup);
     }
 
-
 }

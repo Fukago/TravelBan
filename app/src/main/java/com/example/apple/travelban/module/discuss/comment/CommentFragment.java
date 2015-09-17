@@ -1,6 +1,5 @@
 package com.example.apple.travelban.module.discuss.comment;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -20,8 +19,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.kermit.exutils.utils.ExUtils;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -51,13 +48,6 @@ public class CommentFragment extends BaseFragment implements
     private CommentAdatper mAdatper;
     private Topic mTopic;
 
-    private TextView contentTitle;
-    private TextView titleContent;
-    private TextView nameTitle;
-    private TextView timeTitle;
-    private TextView locationTitle;
-
-    private SimpleDraweeView faceTitle;
 
     @Nullable
     @Override

@@ -64,7 +64,7 @@ public class TopicFragment extends BaseFragment implements
         mRecyclerView.setAdapterWithProgress(mAdapter);
         mRecyclerView.setRefreshListener(this);
         mAdapter.setMore(R.layout.view_moreprogress, this);
-
+        mAdapter.setNoMore(R.layout.view_nomore);
         return view;
     }
 
@@ -83,7 +83,17 @@ public class TopicFragment extends BaseFragment implements
 
     @Override
     public void onLoadMore() {
-        fetchData();
+        TopicModel.getInstance().queryAllTopic(placeName, new FindListener<Topic>() {
+            @Override
+            public void onSuccess(List<Topic> list) {
+                mAdapter.addAll(list);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+        });
     }
 
 
