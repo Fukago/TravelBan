@@ -3,9 +3,10 @@ package com.example.apple.travelban.app;
 import android.app.Application;
 
 import com.example.apple.travelban.BuildConfig;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.jude.beam.Beam;
 import com.jude.http.RequestManager;
-import com.jude.utils.JUtils;
+import com.kermit.exutils.utils.ExUtils;
 
 
 /**
@@ -24,8 +25,8 @@ public class App extends Application{
         super.onCreate();
         instance = this;
 
-
-        JUtils.initialize(this);
+        Fresco.initialize(this);
+        ExUtils.initialize(this);
         RequestManager.getInstance().init(this);
         RequestManager.getInstance().setDebugMode(BuildConfig.DEBUG, "NET");
         Beam.init(this);

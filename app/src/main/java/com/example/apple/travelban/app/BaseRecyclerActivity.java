@@ -12,7 +12,8 @@ import com.jude.beam.nucleus.manager.Presenter;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
-import com.jude.utils.JUtils;
+
+import cn.bmob.push.lib.util.LogUtil;
 
 /**
  * Created by apple on 15/8/10.
@@ -75,7 +76,6 @@ public abstract class BaseRecyclerActivity<T extends Presenter,E> extends BaseAc
 
     public void stopLoad(){
         adapter.stopMore();
-        JUtils.Log("stopLoads");
     }
 
     protected class DataAdapter extends RecyclerArrayAdapter<E> {

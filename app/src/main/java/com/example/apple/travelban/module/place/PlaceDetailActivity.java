@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,7 +17,8 @@ import android.widget.Toast;
 import com.example.apple.travelban.R;
 import com.example.apple.travelban.app.BaseActivity;
 import com.example.apple.travelban.model.bean.PlaceDetailBean;
-import com.example.apple.travelban.model.bean.UserDataBean;
+import com.example.apple.travelban.model.bean.User;
+import com.example.apple.travelban.module.discuss.TopicActivity;
 import com.example.apple.travelban.utils.ActivityCollector;
 import com.jude.beam.nucleus.factory.RequiresPresenter;
 
@@ -61,7 +63,11 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
     private String dataAtName;
     private String dataAtDescription;
     private Boolean flag = true;
+    private Button btnMoreTopic;
+
     private List<String> hobby = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +93,8 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
         openTime = $(R.id.open);
         atName = $(R.id.AtName);
         atDescription = $(R.id.AtDescription);
+        btnMoreTopic = $(R.id.button_moretopic);
+        btnMoreTopic.setOnClickListener(this);
         initData();
     }
 
@@ -119,6 +127,7 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
             dataDescription = data.getDescription();
             dataPrice = data.getTicket_info().getPrice();
             dataOpernTime = data.getTicket_info().getOpen_time();
+
             if (!(data.getTicket_info().getAttention() == null)) {
                 dataAtName = data.getTicket_info().getAttention().get(0).getName();
             } else dataAtName = "没有详细信息";
@@ -164,15 +173,14 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
                 break;
             }
             case R.id.collect: {
-                UserDataBean userInfo = BmobUser.getCurrentUser(PlaceDetailActivity.this, UserDataBean.class);
+                User userInfo = BmobUser.getCurrentUser(PlaceDetailActivity.this, User.class);
                 Log.d("id", userInfo.getObjectId());
-                UserDataBean user = new UserDataBean();
-                BmobQuery<UserDataBean> query = new BmobQuery<UserDataBean>();
-                query.getObject(PlaceDetailActivity.this, userInfo.getObjectId(), new GetListener<UserDataBean>() {
+                User user = new User();
+                BmobQuery<User> query = new BmobQuery<User>();
+                query.getObject(PlaceDetailActivity.this, userInfo.getObjectId(), new GetListener<User>() {
 
                     @Override
-                    public void onSuccess(UserDataBean object) {
-                        // TODO Auto-generated method stub
+                    public void onSuccess(User object) {
                         if (object.getHobby() != null) {
                             hobby.addAll(object.getHobby());
                         }
@@ -180,7 +188,6 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
 
                     @Override
                     public void onFailure(int code, String arg0) {
-                        // TODO Auto-generated method stub
                     }
 
                 });
@@ -193,19 +200,26 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
 
                     @Override
                     public void onSuccess() {
-                        // TODO Auto-generated method stub
                         icCollect.setImageResource(R.drawable.ic_shoucang);
                         Toast.makeText(PlaceDetailActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(int code, String msg) {
-                        // TODO Auto-generated method stub
                         Toast.makeText(PlaceDetailActivity.this, "收藏失败", Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;
             }
+            case R.id.button_moretopic:
+
+                Bundle bundle = new Bundle();
+                bundle.putString("placeName", dataName);
+                Intent intent = new Intent(PlaceDetailActivity.this, TopicActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+                break;
             default:
                 break;
         }
@@ -236,6 +250,8 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
         Bitmap btp = BitmapFactory.decodeStream(is, null, options);
         imageView.setImageBitmap(btp);
     }
+
+
 
 }
 

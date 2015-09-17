@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.apple.travelban.R;
-import com.example.apple.travelban.model.bean.UserDataBean;
+import com.example.apple.travelban.model.bean.User;
 import com.example.apple.travelban.module.user.LogInActivity;
 
 import cn.bmob.v3.BmobUser;
@@ -22,7 +22,7 @@ public class WelcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                UserDataBean userInfo = BmobUser.getCurrentUser(WelcomeActivity.this, UserDataBean.class);
+                User userInfo = BmobUser.getCurrentUser(WelcomeActivity.this, User.class);
                 if (userInfo != null) {
                     Intent intent = new Intent(WelcomeActivity.this, TravelBanActivity.class);
                     Bundle bundle=new Bundle();

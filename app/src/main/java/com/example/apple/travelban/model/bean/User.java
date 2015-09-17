@@ -8,15 +8,33 @@ import cn.bmob.v3.BmobUser;
 /**
  * Created by apple on 15/8/27.
  */
-public class UserDataBean extends BmobUser {
+public class User extends BmobUser {
+
     public String[] collection;
     public String account;
     public String phoneNumber;
     public String address;
     public String userEmail;
     public String description;
+    public String face;
+    public String sex;
     public List<String> hobby;
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getFace() {
+        return face;
+    }
+
+    public void setFace(String face) {
+        this.face = face;
+    }
 
     public String getDescription() {
         return description;

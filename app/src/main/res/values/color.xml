@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <resources>
-        <color name="colorPrimary">@color/DeepPurple</color>
-        <color name="colorPrimaryDark">@color/DeepPurple900</color>
-        <color name="colorAccent">@color/Orange</color>
-        <color name="Orange">#ff5722</color>
-        <color name="DeepPurple">#673AB7</color>
-        <color name="DeepPurple900">#311B92</color>
-        <color name="White">#fff</color>
+<resources>
+    <color name="colorPrimary">@color/DeepPurple</color>
+    <color name="colorPrimaryDark">@color/DeepPurple900</color>
+    <color name="colorAccent">@color/Orange</color>
+    <color name="Orange">#ff5722</color>
+    <color name="DeepPurple">#673AB7</color>
+    <color name="DeepPurple900">#311B92</color>
+    <color name="White">#fff</color>
 
-        <color name="Gray">#888888</color>
-        <color name="Gray100">#dddddd</color>
-        <color name="Gray600">#999999</color>
-    </resources>
+    <color name="Gray">#888888</color>
+    <color name="Gray100">#dddddd</color>
+    <color name="Gray600">#999999</color>
+
+    <!-- Orange-->
+    <color name="Orange_50">#FFF3E0</color>
+    <color name="Orange_100">#FFE0B2</color>
+    <color name="Orange_200">#FFCC80</color>
+    <color name="Orange_300">#FFB74D</color>
+    <color name="Orange_400">#FFA726</color>
+    <color name="Orange_500">#FF9800</color>
+    <color name="Orange_600">#FB8C00</color>
+    <color name="Orange_700">#F57C00</color>
+    <color name="Orange_800">#EF6C00</color>
+    <color name="Orange_900">#E65100</color>
+
+
+</resources>

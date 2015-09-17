@@ -168,7 +168,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -195,6 +196,31 @@
                         tool:text="1. 身高1.2米以下儿童免票。 2. 北京市65岁以上老年人凭老年证免票；外地70周岁以上（含70周岁）老年人凭有效证件，门票半价优惠。 3. 大、中、小学学生（不含成人教育学生）、外国留学生凭学生证，门票半价优惠。 4. 残疾人、离休干部、离休军人、现役军人、武警官兵、省、部级以上劳模凭有效证件免票。 5. 持有社会保障金领取证的人员凭有效证件，门票半价优惠。" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="......"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center"
+                >
+                <Button
+                    android:id="@+id/button_moretopic"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Orange"
+                    android:text="更多评论"
+                    android:textColor="@color/White"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
+
 </LinearLayout>

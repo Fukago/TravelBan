@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.apple.travelban.R;
-import com.example.apple.travelban.model.bean.UserDataBean;
+import com.example.apple.travelban.model.bean.User;
 import com.example.apple.travelban.utils.ActivityCollector;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -20,6 +20,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class WriteActivity extends AppCompatActivity {
+
     public MaterialEditText tittle;
     public MaterialEditText description;
     public Button mButton;
@@ -38,6 +39,7 @@ public class WriteActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -59,8 +61,8 @@ public class WriteActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final UserDataBean userInfo = BmobUser.getCurrentUser(WriteActivity.this, UserDataBean.class);
-                UserDataBean user = new UserDataBean();
+                final User userInfo = BmobUser.getCurrentUser(WriteActivity.this, User.class);
+                User user = new User();
                 user.setDescription(mEditText.getText().toString());
                 user.setObjectId(userInfo.getObjectId());
                 user.update(WriteActivity.this, new UpdateListener() {
@@ -97,7 +99,7 @@ public class WriteActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_writeFragment) {
             return true;
         }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <!--android:numColumns=""-->
+    <!--android:horizontalSpacing=""-->
+    <!--android:verticalSpacing=""-->
+
+<GridView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:numColumns="auto_fit"
+    android:horizontalSpacing="2dp"
+    android:verticalSpacing="2dp"
+    >
+
+</GridView>

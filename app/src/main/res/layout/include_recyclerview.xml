@@ -7,4 +7,5 @@
     android:layout_height="match_parent"
     recycler:layout_empty="@layout/view_empty"
     recycler:layout_progress="@layout/view_progress"
-    recycler:scrollbarStyle="insideInset" />
+    recycler:scrollbarStyle="insideInset"
+    />

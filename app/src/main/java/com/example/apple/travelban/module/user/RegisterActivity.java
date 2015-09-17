@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 
 import com.example.apple.travelban.R;
-import com.example.apple.travelban.model.bean.UserDataBean;
+import com.example.apple.travelban.model.bean.User;
 import com.example.apple.travelban.utils.ActivityCollector;
 import com.example.apple.travelban.module.main.TravelBanActivity;
 import com.jude.swipbackhelper.SwipeBackHelper;
@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 true);
                 if (username.getText().toString().length() <= 12 && username.getText().toString().length() >= 6
                         && password.getText().toString().length() <= 12 && password.getText().toString().length() >= 6) {
-                    UserDataBean bu = new UserDataBean();
+                    User bu = new User();
                     bu.setUsername(username.getText().toString());
                     bu.setPassword(password.getText().toString());
                     bu.signUp(RegisterActivity.this, new SaveListener() {

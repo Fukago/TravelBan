@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apple.travelban.R;
-import com.example.apple.travelban.model.bean.UserDataBean;
+import com.example.apple.travelban.model.bean.User;
 import com.example.apple.travelban.utils.ActivityCollector;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -52,7 +52,7 @@ public class UserDataActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        UserDataBean userInfo = BmobUser.getCurrentUser(UserDataActivity.this, UserDataBean.class);
+        User userInfo = BmobUser.getCurrentUser(UserDataActivity.this, User.class);
         if (userInfo != null) {
             list.clear();
             list.add("我的账号          " + userInfo.getUsername());
@@ -125,7 +125,7 @@ public class UserDataActivity extends AppCompatActivity {
                 LayoutInflater factory = LayoutInflater.from(UserDataActivity.this);
                 final View DialogView = factory.inflate(R.layout.dialog_layout, null);
                 final MaterialEditText mEditText = (MaterialEditText) DialogView.findViewById(R.id.materialEdit);
-                final UserDataBean userInfo = BmobUser.getCurrentUser(UserDataActivity.this, UserDataBean.class);
+                final User userInfo = BmobUser.getCurrentUser(UserDataActivity.this, User.class);
                 switch (position) {
                     case 2: {
                         mEditText.setHint("您的昵称");
@@ -136,7 +136,7 @@ public class UserDataActivity extends AppCompatActivity {
                         alert.setView(DialogView);
                         alert.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                UserDataBean user = new UserDataBean();
+                                User user = new User();
                                 user.setAccount(mEditText.getText().toString());
                                 user.setObjectId(userInfo.getObjectId());
                                 user.update(UserDataActivity.this, new UpdateListener() {
@@ -176,7 +176,7 @@ public class UserDataActivity extends AppCompatActivity {
                         alert.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 if (mEditText.getText().toString().length() == 11) {
-                                    UserDataBean user = new UserDataBean();
+                                    User user = new User();
                                     user.setPhoneNumber(mEditText.getText().toString());
                                     user.setObjectId(userInfo.getObjectId());
                                     user.update(UserDataActivity.this, new UpdateListener() {
@@ -218,7 +218,7 @@ public class UserDataActivity extends AppCompatActivity {
                         alert.setView(DialogView);
                         alert.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                UserDataBean user = new UserDataBean();
+                                User user = new User();
                                 user.setAddress(mEditText.getText().toString());
                                 user.setObjectId(userInfo.getObjectId());
                                 user.update(UserDataActivity.this, new UpdateListener() {
@@ -256,7 +256,7 @@ public class UserDataActivity extends AppCompatActivity {
                         alert.setView(DialogView);
                         alert.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                UserDataBean user = new UserDataBean();
+                                User user = new User();
                                 user.setUserEmail(mEditText.getText().toString());
                                 user.setObjectId(userInfo.getObjectId());
                                 user.update(UserDataActivity.this, new UpdateListener() {

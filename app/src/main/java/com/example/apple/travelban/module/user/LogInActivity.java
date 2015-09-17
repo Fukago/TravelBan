@@ -15,7 +15,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.apple.travelban.R;
-import com.example.apple.travelban.model.bean.UserDataBean;
+import com.example.apple.travelban.model.bean.User;
 import com.example.apple.travelban.utils.ActivityCollector;
 import com.example.apple.travelban.module.main.TravelBanActivity;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -67,7 +67,7 @@ public class LogInActivity extends AppCompatActivity {
                                     null,
                                     "正在为您登录...",
                                     true);
-                    UserDataBean user = new UserDataBean();
+                    User user = new User();
                 user.setUsername(username.getText().toString());
                 user.setPassword(password.getText().toString());
                 user.login(LogInActivity.this, new SaveListener() {

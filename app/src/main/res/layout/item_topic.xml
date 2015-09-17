@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/id_item_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/id_topic_face"
+                    android:layout_height="@dimen/topic_face"
+                    android:layout_width="@dimen/topic_face"
+                    fresco:roundAsCircle="true"
+                    fresco:placeholderImage="@drawable/facepalce"
+                    fresco:actualImageScaleType="focusCrop"
+                    fresco:placeholderImageScaleType="fitCenter"
+                    fresco:failureImage="@drawable/facepalce"
+                    >
+
+                </com.facebook.drawee.view.SimpleDraweeView>
+
+                <TextView
+                    android:id="@+id/id_topic_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="@dimen/topic_tv_name"
+                    android:text="王二"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    >
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <TextView
+                    android:id="@+id/id_topic_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/topic_title"
+                    android:text="不要理我，我是标题"
+                    />
+
+            </LinearLayout>
+
+            <ViewStub
+                android:id="@+id/viewstub_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/gridview_item_img"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:id="@+id/id_topic_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/topic_content"
+                    android:text="我是内容"
+                    android:maxLines="7"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            >
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/location"
+                />
+            <TextView
+                android:id="@+id/id_item_topic_locationss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未知地区"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/id_item_topic_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                >
+                <TextView
+                    android:id="@+id/id_topic_numComment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="个回复"
+                    />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/id_topic_goodbtn"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/id_item_topic_ll"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                >
+
+                <ImageView
+                    android:id="@+id/id_topic_goodimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:src="@drawable/good"
+                    />
+
+                <TextView
+                    android:text="20"
+                    android:id="@+id/id_item_topic_good"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/id_topic_goodimg"
+                    />
+
+                <TextView
+                    android:id="@+id/id_topic_addgood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+1"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/id_topic_badbtn"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/id_item_topic_ll"
+                android:layout_marginLeft="82dp"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                >
+
+                <ImageView
+                    android:id="@+id/id_topic_badimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:src="@drawable/bad"
+                    />
+                <TextView
+                    android:text="35"
+                    android:id="@+id/id_item_topic_bad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/id_topic_badimg"
+                    />
+
+                <TextView
+                    android:id="@+id/id_topic_addbad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-1"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone"
+                    />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/id_topic_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="昨天"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

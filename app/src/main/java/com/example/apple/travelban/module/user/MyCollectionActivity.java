@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.example.apple.travelban.R;
-import com.example.apple.travelban.model.bean.UserDataBean;
+import com.example.apple.travelban.model.bean.User;
 import com.example.apple.travelban.module.place.PlaceDetailPresenter;
 import com.example.apple.travelban.utils.ActivityCollector;
 import com.example.apple.travelban.module.place.PlaceDetailActivity;
@@ -109,13 +108,13 @@ public class MyCollectionActivity extends AppCompatActivity {
     }
 
     public void setData() {
-        UserDataBean userInfo = BmobUser.getCurrentUser(MyCollectionActivity.this, UserDataBean.class);
-        BmobQuery<UserDataBean> query = new BmobQuery<UserDataBean>();
+        User userInfo = BmobUser.getCurrentUser(MyCollectionActivity.this, User.class);
+        BmobQuery<User> query = new BmobQuery<User>();
         final List<String> hobby = new ArrayList<>();
-        query.getObject(MyCollectionActivity.this, userInfo.getObjectId(), new GetListener<UserDataBean>() {
+        query.getObject(MyCollectionActivity.this, userInfo.getObjectId(), new GetListener<User>() {
 
             @Override
-            public void onSuccess(UserDataBean object) {
+            public void onSuccess(User object) {
                 // TODO Auto-generated method stub
                 Message msg = new Message();
                 msg.what = UPDATE;

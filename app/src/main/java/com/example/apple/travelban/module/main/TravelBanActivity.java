@@ -26,7 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apple.travelban.R;
-import com.example.apple.travelban.model.bean.UserDataBean;
+import com.example.apple.travelban.model.bean.User;
 import com.example.apple.travelban.utils.ActivityCollector;
 import com.example.apple.travelban.module.ad.AdFragment;
 import com.example.apple.travelban.module.train.TrainListFragment;
@@ -80,7 +80,7 @@ public class TravelBanActivity extends AppCompatActivity implements OnImageSelec
             }
         });
         setData();
-        UserDataBean userInfo = BmobUser.getCurrentUser(TravelBanActivity.this, UserDataBean.class);
+        User userInfo = BmobUser.getCurrentUser(TravelBanActivity.this, User.class);
         if (userInfo.getAccount()!=null) {
             userName=userInfo.getAccount();
         }

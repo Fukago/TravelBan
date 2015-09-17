@@ -26,27 +26,25 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.jude:easyrecyclerview:1.0.3'
+    compile 'com.jude:easyrecyclerview:3.1.0'
     compile 'com.jude:requestvolley:1.0.4'
     compile 'com.jude:beam:1.0.3'
     compile 'com.jude:swipebackhelper:1.1.8'
     compile 'com.jude:rollviewpager:1.0.1'
     compile 'com.alibaba:fastjson:1.1.15'
-    compile 'com.jude:utils:1.0.6'
     compile 'com.jude:imageprovider:1.0.7'
     compile 'com.android.support:cardview-v7:22.2.0'
     compile 'com.afollestad:material-dialogs:0.7.5.5'
     compile 'com.pnikosis:materialish-progress:1.5'
     compile 'com.android.support:design:22.2.0'
-    compile 'com.facebook.fresco:fresco:0.5.1'
+    compile 'com.facebook.fresco:fresco:0.6.1+'
     compile 'com.balysv:material-ripple:1.0.2'
     compile files('libs/pinyin4j-2.5.0.jar')
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile('com.github.florent37:materialviewpager:1.1.0@aar') {
         transitive = true
     }
-    compile 'com.jakewharton:butterknife:7.0.1'
-
+    compile 'com.kermit:exutils:1.0.4'
     compile files('libs/MobLogCollector.jar')
     compile files('libs/MobTools.jar')
     compile files('libs/pinyin4j-2.5.0.jar')

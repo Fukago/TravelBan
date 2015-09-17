@@ -2,9 +2,7 @@ package com.example.apple.travelban.model.callback;
 
 import android.util.Log;
 
-import com.example.apple.travelban.cofing.API;
 import com.google.gson.Gson;
-import com.jude.utils.JUtils;
 
 import org.json.JSONObject;
 
@@ -53,7 +51,7 @@ public abstract class ADCallBack<T>extends LinkCallback {
     @Override
     public void onError(String s) {
         result("网络错误");
-        error("网络错误");
+//        error("网络错误");
         super.onError(s);
     }
 
@@ -64,9 +62,9 @@ public abstract class ADCallBack<T>extends LinkCallback {
 
     public abstract void failure(boolean ret);
 
-    public void error(String errorInfo) {
-        JUtils.Toast(errorInfo);
-    }
+//    public void error(String errorInfo) {
+//        Utils.Toast(errorInfo);
+//    }
 
 }
 
