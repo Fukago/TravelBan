@@ -52,4 +52,6 @@ public class API {
         public static final int Failure = 0;
         public static final int PERMISSION_DENIED = 213;
     }
+
+    public static final String GEOCODING = "http://api.map.baidu.com/geocoder/v2/?ak=PP9DAGXMAC5N8CAjSy1vGL9M";
 }

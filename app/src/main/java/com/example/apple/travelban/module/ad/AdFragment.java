@@ -15,6 +15,7 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.jude.beam.nucleus.factory.RequiresPresenter;
 import com.jude.beam.nucleus.view.NucleusFragment;
+import com.software.shell.fab.ActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 @RequiresPresenter(Adpresenter.class)
 public class AdFragment extends NucleusFragment<Adpresenter> {
     private RecyclerView mRecyclerView;
+    private ActionButton mActionButton;
     private RecyclerView.Adapter mAdapter;
     private List<AdBean.AdData.Books> mContentItems = new ArrayList<>();
 
@@ -51,12 +53,30 @@ public class AdFragment extends NucleusFragment<Adpresenter> {
         super.onViewCreated(view, savedInstanceState);
         getPresenter().onResponse();
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        mActionButton = (ActionButton) view.findViewById(R.id.actionButton_fragment_ad);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
         mAdapter = new RecyclerViewMaterialAdapter(new AdAdapter(mContentItems, this));
         mRecyclerView.setAdapter(mAdapter);
+
+        setScrollListener();
+
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
+    }
+
+    private void setScrollListener() {
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy >= 1){
+                    mActionButton.hide();
+                }else if (dy <= -1){
+                    mActionButton.show();
+                }
+            }
+        });
     }
 
 

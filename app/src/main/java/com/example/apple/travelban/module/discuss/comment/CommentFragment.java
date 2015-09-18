@@ -54,6 +54,12 @@ public class CommentFragment extends BaseFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_comment, container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (EasyRecyclerView) view.findViewById(R.id.recycler_fragment_comment);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setRefreshListener(this);
@@ -62,13 +68,6 @@ public class CommentFragment extends BaseFragment implements
         mAdatper.setMore(R.layout.view_moreprogress, this);
         mTopic = (Topic) getArguments().getSerializable("topic");
 
-        ExUtils.Toast(TAG);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         fetchData();
         addHeader();
         mAdatper.notifyDataSetChanged();

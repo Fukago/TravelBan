@@ -30,7 +30,6 @@ public class TopicFragment extends BaseFragment implements
 
     public static final String TAG = "TopicFragment";
 
-
     private static TopicFragment topicFragment;
 
 
@@ -58,6 +57,12 @@ public class TopicFragment extends BaseFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_topic, container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         mRecyclerView = (EasyRecyclerView) view.findViewById(R.id.recycler_fragment_topic);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -66,12 +71,6 @@ public class TopicFragment extends BaseFragment implements
         mRecyclerView.setRefreshListener(this);
         mAdapter.setMore(R.layout.view_moreprogress, this);
         mAdapter.setNoMore(R.layout.view_nomore);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         fetchData();
         page=1;
     }

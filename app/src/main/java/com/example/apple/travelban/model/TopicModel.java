@@ -36,8 +36,7 @@ public class TopicModel {
         return topicModel;
     }
 
-    public void publishTopic(User user, String placeName, String content, String title, SaveListener listener){
-        Topic topic = new Topic();
+    public void publishTopic(User user, Topic topic, String placeName, String content, String title, SaveListener listener){
         topic.setAuthor(user);
         topic.setPlaceName(placeName);
         topic.setContent(content);

@@ -31,6 +31,7 @@ public class TopicViewHolder extends BaseViewHolder<Topic> {
     private TextView commentNum;
     private TextView goodNum;
     private TextView badNum;
+    private TextView location;
 
     public static OnTopicItemViewClickListener mListener;
     public interface OnTopicItemViewClickListener{
@@ -51,6 +52,7 @@ public class TopicViewHolder extends BaseViewHolder<Topic> {
         commentNum = $(R.id.id_topic_numComment);
         goodNum = $(R.id.id_item_topic_good);
         badNum = $(R.id.id_item_topic_bad);
+        location = $(R.id.id_item_topic_locationss);
     }
 
     @Override
@@ -71,6 +73,7 @@ public class TopicViewHolder extends BaseViewHolder<Topic> {
         commentNum.setText(data.getCommentNum() + "");
         goodNum.setText(data.getGood() + "");
         badNum.setText(data.getBad() + "");
+        location.setText(data.getLocation());
         pic = data.getPic();
     }
 }
