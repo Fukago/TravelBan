@@ -77,7 +77,7 @@ public class TopicActivity extends AppCompatActivity implements
 
         switch (item.getItemId()){
             case R.id.menu_writeFragment:
-                if (isCommentFragment){
+                if (isCommentFragment()){
                     mFragment = WriteCommentFragment.newInstance();
                     Bundle bundle = new Bundle();
                     bundle.putString("placeName", placeName);
@@ -98,7 +98,6 @@ public class TopicActivity extends AppCompatActivity implements
                             .replace(R.id.container_topic, mFragment)
                             .addToBackStack(null)
                             .commit();
-                    isCommentFragment = false;
                     return true;
                 }
         }
@@ -107,7 +106,6 @@ public class TopicActivity extends AppCompatActivity implements
     }
 
 
-    private boolean isCommentFragment;
     @Override
     public void onClick(View v, Topic topic) {
         mTopic = topic;
@@ -117,11 +115,10 @@ public class TopicActivity extends AppCompatActivity implements
         mFragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container_topic, mFragment)
+                .replace(R.id.container_topic, mFragment, CommentFragment.TAG)
                 .addToBackStack(null)
                 .commit();
         getSupportActionBar().setTitle(placeName);
-        isCommentFragment = true;
     }
 
     @Override
@@ -129,6 +126,13 @@ public class TopicActivity extends AppCompatActivity implements
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container_topic, TopicFragment.newInstance())
+                .addToBackStack(null)
                 .commit();
+    }
+
+    private boolean isCommentFragment(){
+        if (getSupportFragmentManager().findFragmentByTag(CommentFragment.TAG) instanceof CommentFragment)
+            return true;
+        else return false;
     }
 }

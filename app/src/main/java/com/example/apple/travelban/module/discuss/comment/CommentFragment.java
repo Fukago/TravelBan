@@ -32,7 +32,7 @@ public class CommentFragment extends BaseFragment implements
         SwipeRefreshLayout.OnRefreshListener,
         RecyclerArrayAdapter.OnLoadMoreListener{
 
-    private static final String TAG = "CommentFragment";
+    public static final String TAG = "CommentFragment";
 
     private static CommentFragment commentFragment;
 
@@ -47,6 +47,7 @@ public class CommentFragment extends BaseFragment implements
     private EasyRecyclerView mRecyclerView;
     private CommentAdatper mAdatper;
     private Topic mTopic;
+    private int page;
 
 
     @Nullable
@@ -71,6 +72,7 @@ public class CommentFragment extends BaseFragment implements
         fetchData();
         addHeader();
         mAdatper.notifyDataSetChanged();
+        page = 1;
     }
 
 
@@ -82,16 +84,16 @@ public class CommentFragment extends BaseFragment implements
     @Override
     public void onLoadMore() {
         fetchData();
+        page++;
     }
 
     public void fetchData(){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                CommentModel.getInstance().queryComment(mTopic, new FindListener<Comment>() {
+                CommentModel.getInstance().queryComment(page, mTopic, new FindListener<Comment>() {
                     @Override
                     public void onSuccess(List<Comment> list) {
-                        ExUtils.Toast(list + "");
                         mAdatper.addAll(list);
                     }
 

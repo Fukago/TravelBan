@@ -70,11 +70,12 @@ public class TopicModel {
         });
     }
 
-    public void queryAllTopic(String placeName, FindListener<Topic> listener){
+    public void queryAllTopic(int curPage, String placeName, FindListener<Topic> listener){
         BmobQuery<Topic> query = new BmobQuery<>();
         query.addWhereEqualTo("placeName", placeName);
         query.include("author");
-        query.setLimit(50);
+        query.setLimit(3);
+        query.setSkip((curPage-1)*3);
         query.findObjects(mContext, listener);
     }
 

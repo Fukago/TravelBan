@@ -28,7 +28,7 @@ public class TopicFragment extends BaseFragment implements
         RecyclerArrayAdapter.OnLoadMoreListener,
         SwipeRefreshLayout.OnRefreshListener{
 
-    private static final String TAG = "TopicFragment";
+    public static final String TAG = "TopicFragment";
 
 
     private static TopicFragment topicFragment;
@@ -45,6 +45,7 @@ public class TopicFragment extends BaseFragment implements
     private EasyRecyclerView mRecyclerView;
     private TopicAdapter mAdapter;
     private String placeName;
+    private int page;
 
 
     @Override
@@ -72,6 +73,7 @@ public class TopicFragment extends BaseFragment implements
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fetchData();
+        page=1;
     }
 
 
@@ -83,17 +85,8 @@ public class TopicFragment extends BaseFragment implements
 
     @Override
     public void onLoadMore() {
-        TopicModel.getInstance().queryAllTopic(placeName, new FindListener<Topic>() {
-            @Override
-            public void onSuccess(List<Topic> list) {
-                mAdapter.addAll(list);
-            }
-
-            @Override
-            public void onError(int i, String s) {
-
-            }
-        });
+        fetchData();
+        page++;
     }
 
 
@@ -104,7 +97,7 @@ public class TopicFragment extends BaseFragment implements
             @Override
             public void run() {
 
-                TopicModel.getInstance().queryAllTopic(placeName, new FindListener<Topic>() {
+                TopicModel.getInstance().queryAllTopic(page, placeName, new FindListener<Topic>() {
                     @Override
                     public void onSuccess(List<Topic> list) {
                         mAdapter.addAll(list);
@@ -112,7 +105,6 @@ public class TopicFragment extends BaseFragment implements
 
                     @Override
                     public void onError(int i, String s) {
-
                     }
                 });
 

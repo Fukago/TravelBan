@@ -211,8 +211,10 @@
                 >
                 <Button
                     android:id="@+id/button_moretopic"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:background="@color/Orange"
                     android:text="更多评论"
                     android:textColor="@color/White"

@@ -45,10 +45,12 @@ public class CommentModel {
         comment.save(mContext, listener);
     }
 
-    public void queryComment(Topic topic, FindListener<Comment> listener){
+    public void queryComment(int page, Topic topic, FindListener<Comment> listener){
         BmobQuery<Comment> query = new BmobQuery<>();
         query.addWhereEqualTo("mTopic", new BmobPointer(topic));
         query.include("user,topic.author");
+        query.setLimit(5);
+        query.setSkip((page-1)*5);
         query.findObjects(mContext, listener);
     }
 }

@@ -119,7 +119,7 @@ public class PlaceDetailBean {
             this.url = url;
         }
 
-       public class PlaceAttention{
+        public class PlaceAttention{
             public String name;
             public String description;
 
@@ -139,7 +139,7 @@ public class PlaceDetailBean {
                 this.name = name;
             }
         }
-      public   class PlaceLocation{
+        public class PlaceLocation{
             public double lng;
             public double lat;
 
@@ -159,18 +159,18 @@ public class PlaceDetailBean {
                 this.lng = lng;
             }
         }
-       public class PlaceTicketInfo{
+        public class PlaceTicketInfo{
             public String price;
             public String open_time;
             public List<PlaceAttention> attention;
 
-           public List<PlaceAttention> getAttention() {
-               return attention;
-           }
+            public List<PlaceAttention> getAttention() {
+                return attention;
+            }
 
-           public void setAttention(List<PlaceAttention> attention) {
-               this.attention = attention;
-           }
+            public void setAttention(List<PlaceAttention> attention) {
+                this.attention = attention;
+            }
 
             public String getOpen_time() {
                 return open_time;
