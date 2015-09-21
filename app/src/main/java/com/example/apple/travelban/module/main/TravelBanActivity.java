@@ -1,8 +1,9 @@
 package com.example.apple.travelban.module.main;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -25,9 +26,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.apple.travelban.R;
+import com.example.apple.travelban.model.AccountModel;
+import com.example.apple.travelban.model.RemoteFileModel;
 import com.example.apple.travelban.model.bean.User;
-import com.example.apple.travelban.utils.ActivityCollector;
 import com.example.apple.travelban.module.ad.AdFragment;
 import com.example.apple.travelban.module.train.TrainListFragment;
 import com.example.apple.travelban.module.travel.CityClassFragment;
@@ -35,30 +38,34 @@ import com.example.apple.travelban.module.travel.HotelFragment;
 import com.example.apple.travelban.module.user.LogInActivity;
 import com.example.apple.travelban.module.user.MyCollectionActivity;
 import com.example.apple.travelban.module.user.UserDataActivity;
+import com.example.apple.travelban.utils.ActivityCollector;
+import com.example.apple.travelban.utils.ImageProvider;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
-import com.jude.library.imageprovider.ImageProvider;
-import com.jude.library.imageprovider.OnImageSelectListener;
+import com.kermit.exutils.utils.ExUtils;
 
-
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.BmobUpdateListener;
+import cn.bmob.v3.listener.UploadFileListener;
 import cn.bmob.v3.update.BmobUpdateAgent;
 import cn.bmob.v3.update.UpdateResponse;
 
 /**
  * Created by apple on 15/8/18.
  */
-public class TravelBanActivity extends AppCompatActivity implements OnImageSelectListener {
-    private ImageProvider provider;
-    private ProgressDialog dialog;
+public class TravelBanActivity extends AppCompatActivity {
     private MaterialViewPager mViewPager;
     private Toolbar toolbar;
     private DrawerLayout mDrawer;
-    private ImageView mImage;
+    private SimpleDraweeView mImage;
     private ActionBarDrawerToggle mDrawerToggle;
     private String userName;
     private String[] data = {"我的资料","我的收藏","我的设置", "关于我们","切换账号"};
@@ -69,6 +76,7 @@ public class TravelBanActivity extends AppCompatActivity implements OnImageSelec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_travelban);
+
         BmobUpdateAgent.initAppVersion(this);
         ActivityCollector.addActivity(this);
         BmobUpdateAgent.update(this);
@@ -84,6 +92,8 @@ public class TravelBanActivity extends AppCompatActivity implements OnImageSelec
         if (userInfo.getAccount()!=null) {
             userName=userInfo.getAccount();
         }
+
+        mImageProvider = new ImageProvider(this);
         initView();
         Toast.makeText(TravelBanActivity.this, "欢迎，" + userName + "！", Toast.LENGTH_SHORT).show();
     }
@@ -95,11 +105,14 @@ public class TravelBanActivity extends AppCompatActivity implements OnImageSelec
 
     private void initView() {
         setTitle("");
-        mImage = (ImageView) findViewById(R.id.userImage);
+        mImage = (SimpleDraweeView) findViewById(R.id.userImage);
+        if (!TextUtils.isEmpty(AccountModel.getInstance().getCurrentUser().getFace())){
+            mImage.setImageURI(Uri.parse(AccountModel.getInstance().getCurrentUser().getFace()));
+        }
         mImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                provider.getImageFromAlbum(TravelBanActivity.this);
+                editFace();
             }
         });
         mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
@@ -109,7 +122,6 @@ public class TravelBanActivity extends AppCompatActivity implements OnImageSelec
 
         TextView username = (TextView) findViewById(R.id.username);
         username.setText(userName);
-        provider = new ImageProvider(this);
         Drawer data = new Drawer("我的资料", R.drawable.drawer_data);
         Drawer collection = new Drawer("我的收藏", R.drawable.drawer_collection);
         Drawer setting = new Drawer("我的设置", R.drawable.drawer_setting);
@@ -283,47 +295,13 @@ public class TravelBanActivity extends AppCompatActivity implements OnImageSelec
                 super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onImageSelect() {
-        dialog = new ProgressDialog(TravelBanActivity.this);
-        dialog.show();
-    }
 
-    @Override
-    public void onImageLoaded(Uri uri) {
-        dialog.dismiss();
-        provider.corpImage(uri, 200, 200, new OnImageSelectListener() {
-            @Override
-            public void onImageSelect() {
-                Log.d("image3", "true");
-            }
 
-            @Override
-            public void onImageLoaded(Uri uric) {
-                Log.d("image1", "true");
-                mImage.setImageURI(uric);
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
-
-    }
-
-    @Override
-    public void onError() {
-        Log.d("image4", "true");
-        Toast.makeText(TravelBanActivity.this,"Load Error",Toast.LENGTH_SHORT).show();
-        dialog.dismiss();
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        provider.onActivityResult(requestCode, resultCode, data);
+        mImageProvider.onActivityResult(requestCode, resultCode, data);
     }
-
 
     class DrawerAdapter extends ArrayAdapter<Drawer> {
 
@@ -367,6 +345,104 @@ public class TravelBanActivity extends AppCompatActivity implements OnImageSelec
             return image;
         }
 
+    }
+
+    private MaterialDialog dialog;
+    public void showProgress(String title){
+        dialog = new MaterialDialog.Builder(this)
+                .title(title)
+                .content("请稍候")
+                .progress(true, 100)
+                .cancelable(false)
+                .show();
+    }
+
+    public void dismissProgress(){
+        if (dialog != null){
+            dialog.dismiss();
+        }
+    }
+
+    public void editFace(){
+        new MaterialDialog.Builder(this)
+                .title("请选择图片来源")
+                .items(new String[]{"拍照", "相册"})
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                        preFace(i);
+                    }
+                })
+                .show();
+    }
+
+    private String face = "";
+    private ImageProvider mImageProvider;
+    private Bitmap bitmap;
+    public void preFace(int style){
+        ImageProvider.OnImageSelectListener onImageSelectListener = new ImageProvider.OnImageSelectListener() {
+            @Override
+            public void onImageSelect() {
+                showProgress("请稍后");
+            }
+
+            @Override
+            public void onImageLoaded(Uri uri) {
+                dismissProgress();
+
+                mImageProvider.cropImage(uri, 300, 300, new ImageProvider.OnImageSelectListener() {
+                    @Override
+                    public void onImageSelect() {
+                        showProgress("修改中");
+                    }
+
+                    @Override
+                    public void onImageLoaded(Uri uri) {
+                        dismissProgress();
+                        try {
+                            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        if (bitmap != null) {
+                            final BmobFile bmobFile = new BmobFile(new File(uri.getPath()));
+                            RemoteFileModel.getInstance().upload(bmobFile, new UploadFileListener() {
+                                @Override
+                                public void onSuccess() {
+                                    face = bmobFile.getFileUrl(TravelBanActivity.this);
+
+                                    mImage.setImageURI(Uri.parse(face));
+                                    AccountModel.getInstance().updateFace(face);
+                                    ExUtils.Toast("上传文件成功");
+                                }
+                                @Override
+                                public void onFailure(int i, String s) {
+                                    ExUtils.Toast("上传文件失败");
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+                        ExUtils.Toast("上传文件失败");
+                    }
+                });
+            }
+
+            @Override
+            public void onError() {
+                ExUtils.Toast("上传文件失败");
+            }
+        };
+        switch (style){
+            case 0:
+                mImageProvider.getImageFromCamera(onImageSelectListener);
+                break;
+            case 1:
+                mImageProvider.getImageFromAlbum(onImageSelectListener);
+                break;
+        }
     }
 
 }

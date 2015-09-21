@@ -1,7 +1,11 @@
 package com.example.apple.travelban.module.discuss.topic;
 
+import android.net.Uri;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.apple.travelban.R;
@@ -9,6 +13,8 @@ import com.example.apple.travelban.model.bean.Topic;
 import com.example.apple.travelban.model.bean.User;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
+import com.jude.http.RequestManager;
+import com.jude.volley.toolbox.ImageLoader;
 
 import java.util.List;
 
@@ -22,7 +28,7 @@ public class TopicViewHolder extends BaseViewHolder<Topic> {
 
     private SimpleDraweeView face;
 
-    private List<String> pic;
+    private List<String> pics;
 
     private TextView name;
     private TextView title;
@@ -32,6 +38,8 @@ public class TopicViewHolder extends BaseViewHolder<Topic> {
     private TextView goodNum;
     private TextView badNum;
     private TextView location;
+    private SimpleDraweeView img;
+
 
     public static OnTopicItemViewClickListener mListener;
     public interface OnTopicItemViewClickListener{
@@ -68,12 +76,26 @@ public class TopicViewHolder extends BaseViewHolder<Topic> {
         content.setText(data.getContent());
         time.setText(data.getTime());
         name.setText(mUser.getUsername());
-        // TODO: 15-9-17 头像
-//        face.setImageURI(Uri.parse(mUser.getFace()));
+        face.setImageURI(Uri.parse(mUser.getFace()));
         commentNum.setText(data.getCommentNum() + "");
         goodNum.setText(data.getGood() + "");
         badNum.setText(data.getBad() + "");
-        location.setText(data.getLocation());
-        pic = data.getPic();
+        if (!TextUtils.isEmpty(data.getLocation())) {
+            location.setText(data.getLocation());
+        }
+        pics = data.getPic();
+
+        if (img != null){
+            img.setVisibility(View.GONE);
+        }
+        if (pics != null && !TextUtils.isEmpty(pics.get(0))) {
+            if (img == null) {
+                ViewStub viewStub = (ViewStub) itemView.findViewById(R.id.viewstub_img);
+                View view = viewStub.inflate();
+                img = (SimpleDraweeView) view.findViewById(R.id.topic_img);
+            }
+            img.setVisibility(View.VISIBLE);
+            img.setImageURI(Uri.parse(pics.get(0)));
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.example.apple.travelban.model;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.apple.travelban.app.App;
 import com.example.apple.travelban.model.bean.User;
@@ -111,6 +112,22 @@ public class AccountModel {
                 } else {
                     Log.i(TAG, "update listener is null,you must set one!");
                 }
+            }
+        });
+    }
+
+    public void updateFace(String face){
+        User user = getCurrentUser();
+        user.setFace(face);
+        user.update(mContext, new UpdateListener() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(mContext, "头像更新成功！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+
             }
         });
     }

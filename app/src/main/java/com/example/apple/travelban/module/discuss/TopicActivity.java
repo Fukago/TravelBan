@@ -1,6 +1,8 @@
 package com.example.apple.travelban.module.discuss;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,7 @@ import com.example.apple.travelban.module.discuss.comment.WriteCommentFragment;
 import com.example.apple.travelban.module.discuss.topic.TopicFragment;
 import com.example.apple.travelban.module.discuss.topic.TopicViewHolder;
 import com.example.apple.travelban.module.discuss.topic.WriteTopicFragment;
+import com.example.apple.travelban.utils.ImageProvider;
 
 /**
  * Created by Kermit on 15-9-16.
@@ -22,7 +25,9 @@ import com.example.apple.travelban.module.discuss.topic.WriteTopicFragment;
  */
 public class TopicActivity extends AppCompatActivity implements
         TopicViewHolder.OnTopicItemViewClickListener,
-        WriteTopicFragment.OnWriteTopicFragmentListener {
+        WriteTopicFragment.OnWriteTopicFragmentListener,
+        WriteTopicFragment.OnActivityResultCallback,
+        WriteCommentFragment.OnWriteCommentFragmentListenr{
 
     private static final String TAG = "TopicActivity";
 
@@ -63,6 +68,12 @@ public class TopicActivity extends AppCompatActivity implements
                 .commit();
 
         TopicViewHolder.setOnTopicItemViewClickListener(this);
+
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
     }
 
     @Override
@@ -72,8 +83,12 @@ public class TopicActivity extends AppCompatActivity implements
         return super.onCreateOptionsMenu(menu);
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (isWriteFragment()) return false;
 
         switch (item.getItemId()){
             case R.id.menu_writeFragment:
@@ -82,29 +97,44 @@ public class TopicActivity extends AppCompatActivity implements
                     Bundle bundle = new Bundle();
                     bundle.putString("placeName", placeName);
                     bundle.putSerializable("topic", mTopic);
-                    mFragment.setArguments(bundle);
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.container_topic, mFragment)
-                            .addToBackStack(null)
-                            .commit();
+                    if (mFragment.getArguments() != null){
+                        mFragment.getArguments().clear();
+                        mFragment.getArguments().putAll(bundle);
+                    }else {
+                        mFragment.setArguments(bundle);
+                    }
+                    toAnotherFragmentWithTag(mFragment, WriteCommentFragment.TAG);
                 }else {
                     mFragment = WriteTopicFragment.newInstance();
                     Bundle bundle = new Bundle();
                     bundle.putString("placeName", placeName);
-                    mFragment.setArguments(bundle);
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.container_topic, mFragment)
-                            .addToBackStack(null)
-                            .commit();
-                    return true;
+                    if (mFragment.getArguments() != null){
+                        mFragment.getArguments().clear();
+                        mFragment.getArguments().putAll(bundle);
+                    }else {
+                        mFragment.setArguments(bundle);
+                    }
+                    toAnotherFragmentWithTag(mFragment, WriteTopicFragment.TAG);
                 }
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private boolean isWriteFragment(){
+        if (getSupportFragmentManager().findFragmentByTag(WriteCommentFragment.TAG) != null ||
+                getSupportFragmentManager().findFragmentByTag(WriteTopicFragment.TAG) != null)
+            return true;
+        return false;
+    }
+
+    private void toAnotherFragmentWithTag(Fragment fragment, String TAG) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container_topic, fragment, TAG)
+                .addToBackStack(null)
+                .commit();
+    }
 
     @Override
     public void onClick(View v, Topic topic) {
@@ -121,18 +151,43 @@ public class TopicActivity extends AppCompatActivity implements
         getSupportActionBar().setTitle(placeName);
     }
 
+
+
     @Override
     public void writeTopicFragmentCallback() {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container_topic, TopicFragment.newInstance())
-                .addToBackStack(null)
-                .commit();
+        toAnotherFragment(TopicFragment.newInstance());
     }
+
 
     private boolean isCommentFragment(){
         if (getSupportFragmentManager().findFragmentByTag(CommentFragment.TAG) instanceof CommentFragment)
             return true;
         else return false;
     }
+
+    private ImageProvider mImageProvider;
+    @Override
+    public void onActivityResultCallback(Object o) {
+        mImageProvider  = (ImageProvider) o;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mImageProvider.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onWriteCommentFragmentListener() {
+        toAnotherFragment(CommentFragment.newInstance());
+    }
+
+    private void toAnotherFragment(Fragment fragment){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container_topic, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
 }

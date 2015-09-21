@@ -76,7 +76,6 @@ public class TopicFragment extends BaseFragment implements
     }
 
 
-    // TODO: 15-9-16 mock
     @Override
     public void onRefresh() {
         fetchData();

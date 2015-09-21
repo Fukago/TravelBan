@@ -65,7 +65,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
+                android:layout_height="48dp"
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:id="@+id/id_topic_title"
@@ -77,12 +79,11 @@
                     />
 
             </LinearLayout>
-
             <ViewStub
                 android:id="@+id/viewstub_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/gridview_item_img"
+                android:layout_width="160dp"
+                android:layout_height="120dp"
+                android:layout="@layout/item_topic_img"
                 />
 
             <LinearLayout
@@ -230,7 +231,7 @@
                 android:id="@+id/id_topic_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="昨天"
                 />

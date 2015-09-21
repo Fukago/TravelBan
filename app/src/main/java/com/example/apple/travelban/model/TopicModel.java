@@ -74,7 +74,8 @@ public class TopicModel {
         query.addWhereEqualTo("placeName", placeName);
         query.include("author");
         query.setLimit(3);
-        query.setSkip((curPage-1)*3);
+        query.setSkip((curPage - 1) * 3);
+        query.order("-time");
         query.findObjects(mContext, listener);
     }
 

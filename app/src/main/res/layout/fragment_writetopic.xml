@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,17 +26,27 @@
             app:met_primaryColor="@color/Orange"
             />
 
+        <ImageView
+            android:id="@+id/button_writetopic_insert_img"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:padding="4dp"
+            android:src="@drawable/insert_img"
+            />
+
+
         <!-- todo 加载提交的图片-->
         <ViewStub
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout="@layout/gridview_item_img"
+            android:layout="@layout/item_topic_img"
             />
 
 
         <EditText
             android:id="@+id/edit_writetopic_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:textColor="#000000"
@@ -49,7 +60,8 @@
             android:background="@color/Orange"
             android:text="确认发送"
             android:layout_width="match_parent"
-            android:layout_height="48dp" />
+            android:layout_height="48dp"
+            />
     </LinearLayout>
 
 </LinearLayout>

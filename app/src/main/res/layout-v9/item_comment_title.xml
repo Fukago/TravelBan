@@ -87,7 +87,7 @@
                 android:src="@drawable/location"
                 />
             <TextView
-                android:id="@+id/id_item_topic_locationss"
+                android:id="@+id/id_item_commenttitle_locationss"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="未知地区"

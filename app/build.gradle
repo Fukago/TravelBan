@@ -37,7 +37,7 @@ dependencies {
     compile 'com.afollestad:material-dialogs:0.7.5.5'
     compile 'com.pnikosis:materialish-progress:1.5'
     compile 'com.android.support:design:22.2.0'
-    compile 'com.facebook.fresco:fresco:0.6.1+'
+    compile 'com.facebook.fresco:fresco:0.7.0'
     compile 'com.balysv:material-ripple:1.0.2'
     compile files('libs/pinyin4j-2.5.0.jar')
     compile 'com.rengwuxian.materialedittext:library:2.1.4'

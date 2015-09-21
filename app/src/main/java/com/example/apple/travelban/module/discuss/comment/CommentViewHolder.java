@@ -20,6 +20,7 @@ public class CommentViewHolder extends BaseViewHolder<Comment> {
     private TextView name;
     private TextView time;
     private TextView content;
+    private TextView location;
 
     public CommentViewHolder(ViewGroup parent) {
         super(parent, R.layout.item_comment);
@@ -32,8 +33,7 @@ public class CommentViewHolder extends BaseViewHolder<Comment> {
     @Override
     public void setData(Comment data) {
         super.setData(data);
-        // TODO: 15-9-17 头像
-//        face.setImageURI(Uri.parse(data.getUser().getFace()));
+        face.setImageURI(Uri.parse(data.getUser().getFace()));
         name.setText(data.getUser().getUsername());
         time.setText(data.getTime());
         content.setText(data.getCommentContent());

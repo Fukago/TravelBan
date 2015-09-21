@@ -1,10 +1,12 @@
 package com.example.apple.travelban.module.discuss.comment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,9 +121,10 @@ public class CommentFragment extends BaseFragment implements
                 ((TextView)view.findViewById(R.id.id_comment_title_content)).setText(mTopic.getContent());
                 ((TextView)view.findViewById(R.id.id_comment_title_time)).setText(mTopic.getTime());
                 ((TextView)view.findViewById(R.id.id_comment_title_username)).setText(mTopic.getAuthor().getUsername());
-                // TODO: 15-9-17 头像
-//                ((SimpleDraweeView)view.findViewById(R.id.id_comment_title_face)).setImageURI(Uri.parse(mTopic.getAuthor().getFace()));
-
+                if (!TextUtils.isEmpty(mTopic.getLocation())) {
+                    ((TextView) view.findViewById(R.id.id_item_commenttitle_locationss)).setText(mTopic.getLocation());
+                }
+                ((SimpleDraweeView)view.findViewById(R.id.id_comment_title_face)).setImageURI(Uri.parse(mTopic.getAuthor().getFace()));
             }
         });
     }
