@@ -37,6 +37,11 @@ public class WriteActivity extends AppCompatActivity {
         ActivityCollector.addActivity(this);
         initView();
     }
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_OK);
+        super.onBackPressed();
+    }
 
     private void initView() {
 

@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
        <item name="android:textColorPrimary">@color/White</item>
-        <item name="colorControlNormal">@color/White</item>
+        <item name="colorControlNormal">#000000</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
@@ -14,6 +14,8 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:textColorPrimary">@color/White</item>
         <item name="colorControlNormal">@color/White</item>
-
+    </style>
+    <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textColor">@color/White</item>
     </style>
 </resources>

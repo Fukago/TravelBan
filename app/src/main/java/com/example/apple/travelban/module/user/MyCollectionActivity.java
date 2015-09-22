@@ -48,6 +48,7 @@ public class MyCollectionActivity extends AppCompatActivity {
             // TODO 接收消息并且去更新UI线程上的控件内容
             if (msg.what == UPDATE) {
                 if(msg.obj!=null) {
+                    hobby.clear();
                     hobby.addAll((Collection<? extends String>) msg.obj);
                     Log.d("ai3", String.valueOf(hobby.size()));
                 }
@@ -82,6 +83,17 @@ public class MyCollectionActivity extends AppCompatActivity {
         setData();
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) {
+            case RESULT_OK:
+                setData();
+                break;
+            default:
+                break;
+        }
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -171,7 +183,7 @@ public class MyCollectionActivity extends AppCompatActivity {
                     bundle.putString("httpArg", httpArg);
                     bundle.putString("tittle", holder.mTextView.getText().toString());
                     intent.putExtras(bundle);
-                    startActivity(intent);
+                    startActivityForResult(intent, 0);
                 }
             });
         }

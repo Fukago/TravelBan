@@ -65,6 +65,17 @@ public class UserDataActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) { //resultCode为回传的标记，我在B中回传的是RESULT_OK
+            case RESULT_OK:
+                setData();
+                initView();
+                break;
+            default:
+                break;
+        }
+    }
 
     private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -85,7 +96,7 @@ public class UserDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserDataActivity.this, WriteActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         });
         if (mDescription != null)
@@ -127,6 +138,12 @@ public class UserDataActivity extends AppCompatActivity {
                 final MaterialEditText mEditText = (MaterialEditText) DialogView.findViewById(R.id.materialEdit);
                 final User userInfo = BmobUser.getCurrentUser(UserDataActivity.this, User.class);
                 switch (position) {
+                    case 0:{
+                        break;
+                    }
+                    case 1:{
+                        break;
+                    }
                     case 2: {
                         mEditText.setHint("您的昵称");
                         mEditText.setFloatingLabelText("昵称");

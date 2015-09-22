@@ -64,7 +64,9 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
     private String dataAtDescription;
     private Boolean flag = true;
     private Button btnMoreTopic;
-
+    private User userInfo;
+    private User user;
+    private int Flag = 0;
     private List<String> hobby = new ArrayList<>();
 
 
@@ -75,6 +77,8 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
         setContentView(R.layout.activity_palcedetail);
         ShareSDK.initSDK(this);
         ActivityCollector.addActivity(this);
+        userInfo = BmobUser.getCurrentUser(PlaceDetailActivity.this, User.class);
+        user = new User();
         mProgress = $(R.id.progress_layout);
         mEmpty = $(R.id.empty);
         icPhone = $(R.id.ic_phone);
@@ -114,6 +118,11 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        Log.i("tag", "onBackPressed");
+        super.onBackPressed();
+    }
 
     public void setData(PlaceDetailBean.PlaceResult data) {
         if (data != null) {
@@ -135,7 +144,34 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
                 dataAtDescription = data.getTicket_info().getAttention().get(0).getDescription();
             } else dataAtDescription = "没有详细信息";
         }
-        initView();
+        BmobQuery<User> query = new BmobQuery<User>();
+        query.getObject(PlaceDetailActivity.this, userInfo.getObjectId(), new GetListener<User>() {
+
+            @Override
+            public void onSuccess(User object) {
+                if (object.getHobby() != null) {
+                    hobby.addAll(object.getHobby());
+                    for (int i = 0; i < hobby.size(); i++) {
+                        if (hobby.get(i).equals(dataName)) {
+                            Flag = 1;
+                        }
+
+                    }
+                    Log.d("Flag", String.valueOf(Flag));
+                    if (Flag == 0) {
+                        icCollect.setImageResource(R.drawable.ic_weishoucang);
+                    }
+                    if (Flag == 1)
+                        icCollect.setImageResource(R.drawable.ic_shoucang);
+                    initView();
+                }
+            }
+
+            @Override
+            public void onFailure(int code, String arg0) {
+            }
+
+        });
     }
 
     private void initView() {
@@ -173,42 +209,53 @@ public class PlaceDetailActivity extends BaseActivity<PlaceDetailPresenter> impl
                 break;
             }
             case R.id.collect: {
-                User userInfo = BmobUser.getCurrentUser(PlaceDetailActivity.this, User.class);
-                Log.d("id", userInfo.getObjectId());
-                User user = new User();
-                BmobQuery<User> query = new BmobQuery<User>();
-                query.getObject(PlaceDetailActivity.this, userInfo.getObjectId(), new GetListener<User>() {
+                setResult(RESULT_OK);
+                switch (Flag) {
+                    case 0: {
+                        hobby.add(dataName);
+                        user.setHobby(hobby);
+                        Log.d("ai", String.valueOf(hobby.size()));
+                        user.update(PlaceDetailActivity.this, userInfo.getObjectId(), new UpdateListener() {
 
-                    @Override
-                    public void onSuccess(User object) {
-                        if (object.getHobby() != null) {
-                            hobby.addAll(object.getHobby());
+                            @Override
+                            public void onSuccess() {
+                                icCollect.setImageResource(R.drawable.ic_shoucang);
+                                Toast.makeText(PlaceDetailActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(int code, String msg) {
+                                Toast.makeText(PlaceDetailActivity.this, "收藏失败", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        Flag = 1;
+                        break;
+                    }
+                    case 1: {
+                        for (int i = 0; i < hobby.size(); i++) {
+                            if (hobby.get(i).equals(dataName)) {
+                                hobby.remove(i);
+                            }
                         }
-                    }
+                        user.setHobby(hobby);
+                        user.update(PlaceDetailActivity.this, userInfo.getObjectId(), new UpdateListener() {
 
-                    @Override
-                    public void onFailure(int code, String arg0) {
-                    }
+                            @Override
+                            public void onSuccess() {
+                                icCollect.setImageResource(R.drawable.ic_weishoucang);
+                                Toast.makeText(PlaceDetailActivity.this, "已取消", Toast.LENGTH_SHORT).show();
+                            }
 
-                });
-                hobby.add(dataName);
-                user.setHobby(hobby);
-                Log.d("ai", String.valueOf(hobby.size()));
-                user.setObjectId(userInfo.getObjectId());
-                user.addAllUnique("hobby", hobby);
-                user.update(PlaceDetailActivity.this, new UpdateListener() {
-
-                    @Override
-                    public void onSuccess() {
-                        icCollect.setImageResource(R.drawable.ic_shoucang);
-                        Toast.makeText(PlaceDetailActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
+                            @Override
+                            public void onFailure(int code, String msg) {
+                                Toast.makeText(PlaceDetailActivity.this, "取消失败", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        Flag = 0;
+                        break;
                     }
+                }
 
-                    @Override
-                    public void onFailure(int code, String msg) {
-                        Toast.makeText(PlaceDetailActivity.this, "收藏失败", Toast.LENGTH_SHORT).show();
-                    }
-                });
                 break;
             }
             case R.id.button_moretopic:

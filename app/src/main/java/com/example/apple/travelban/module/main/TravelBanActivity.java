@@ -50,7 +50,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.BmobUpdateListener;
@@ -410,7 +409,6 @@ public class TravelBanActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess() {
                                     face = bmobFile.getFileUrl(TravelBanActivity.this);
-
                                     mImage.setImageURI(Uri.parse(face));
                                     AccountModel.getInstance().updateFace(face);
                                     ExUtils.Toast("上传文件成功");

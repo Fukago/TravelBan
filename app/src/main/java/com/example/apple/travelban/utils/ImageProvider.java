@@ -7,7 +7,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
 
-import com.kermit.exutils.utils.ExUtils;
 
 import java.io.File;
 import java.io.IOException;
